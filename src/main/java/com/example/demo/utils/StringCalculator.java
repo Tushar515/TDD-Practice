@@ -2,14 +2,19 @@ package com.example.demo.utils;
 
 import org.springframework.stereotype.Service;
 
-import java.util.function.Predicate;
-
 @Service
-public class StringCalculator implements Predicate<Object> {
+public class StringCalculator {
 
+    public int Add(String numbers) {
 
-    @Override
-    public boolean test(Object o) {
-        return o.getClass() == String.class;
+        if(numbers.isEmpty())
+            return 0;
+        String[] splittedNumbers = numbers.split(",");
+
+        if(splittedNumbers.length == 1)
+            return Integer.parseInt(splittedNumbers[0]);
+
+        return Integer.parseInt(splittedNumbers[0]) +
+                Integer.parseInt(splittedNumbers[1]);
     }
 }

@@ -20,11 +20,12 @@ class DemoApplicationTests {
 	@Test
 	public void Add(){
 		// Given
-		String test = "Demo";
+		String test = "1,2";
 		// When
-		boolean isValid = stringCalculator.test(test);
+		int isValid = stringCalculator.Add(test);
+		System.out.println(isValid);
 		// Then
-		assertThat(isValid).isEqualTo(true);
+		assertThat(isValid).isPositive();
 	}
 
 }
