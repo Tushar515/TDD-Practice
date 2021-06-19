@@ -9,20 +9,40 @@ public class StringCalculator {
         int add = 0;
 
         // Handle an empty string
-        if(numbers.isEmpty())
+        if (numbers.isEmpty())
             return 0;
-        String[] splittedNumbers = numbers.replaceAll("\\n",",")
-                .split(",");
 
-        // Handle only one number
-        if(splittedNumbers.length == 1)
-            return Integer.parseInt(splittedNumbers[0]);
+        // Convert String into char[]
+        char[] splittedNumbersInChar = numbers.toCharArray();
 
-        // Handle Unknown Amount of Numbers
-        for(String s : splittedNumbers){
-            add += Integer.parseInt(s);
+        // Check if given String have any custom delimiters
+        if (splittedNumbersInChar[0] != '/') {
+
+            String[] splittedNumbers = numbers.replaceAll("[\\n]", ",")
+                    .split(",");
+
+            // Handle only one number
+            if (splittedNumbers.length == 1) {
+                if (Integer.parseInt(splittedNumbers[0]) < 0) {
+                    throw new IllegalArgumentException("Negative values not allowed "+numbers);
+                }
+                return Integer.parseInt(splittedNumbers[0]);
+            }
+
+            // Handle Unknown Amount of Numbers
+            for (String s : splittedNumbers) {
+                if (Integer.parseInt(s) < 0)
+                    throw new IllegalArgumentException("Negative values not allowed "+numbers);
+                add += Integer.parseInt(s);
+            }
+
+            return add;
         }
 
+        for (char c : splittedNumbersInChar) {
+            if (c >= 48 && c <= 57)
+                add += Character.getNumericValue(c);
+        }
         return add;
     }
 }

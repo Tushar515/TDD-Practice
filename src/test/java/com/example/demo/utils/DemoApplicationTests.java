@@ -3,11 +3,10 @@ package com.example.demo.utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 @SpringBootTest
 class DemoApplicationTests {
@@ -16,6 +15,50 @@ class DemoApplicationTests {
 	@BeforeEach
 	void setUp() {
 		stringCalculator = new StringCalculator();
+	}
+
+	@Test
+	@DisplayName("Test Multiple Negative Values")
+	void testMultipleNegativeValues(){
+		// Given
+		String str = "-1,-2,-3";
+
+		try {
+			stringCalculator.Add(str);
+			fail("Should throw an exception if one or more values are negative");
+		}
+		catch (Exception e){
+			assertThat(e).isInstanceOf(IllegalArgumentException.class)
+					.hasMessage("Negative values not allowed "+str);
+		}
+
+	}
+
+	@Test
+	@DisplayName("Negative Numbers Exception Testing")
+	void testException(){
+		// Given
+		String str = "-1";
+
+		try {
+			stringCalculator.Add(str);
+			fail("Should throw an exception if one or more values are negative");
+		}
+		catch (Exception e){
+			assertThat(e).isInstanceOf(IllegalArgumentException.class)
+					.hasMessage("Negative values not allowed "+str);
+		}
+	}
+
+	@Test
+	@DisplayName("SupportDifferentDelimiters")
+	void supportDifferentDelimiters(){
+		// Given
+		String test = "//;\n1;2";
+		// When
+		int isValid = stringCalculator.Add(test);
+		// Then
+		assertThat(isValid).isEqualTo(3);
 	}
 
 	@Test
