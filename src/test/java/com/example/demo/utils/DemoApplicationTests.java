@@ -18,6 +18,28 @@ class DemoApplicationTests {
 	}
 
 	@Test
+	@DisplayName("Ignore An Value More Than 1000")
+	void ignoreAnValueMoreThan1000(){
+		// Given
+		String str = "2000";
+		// When
+		int isValid = stringCalculator.Add(str);
+		// Then
+		assertThat(isValid).isEqualTo(0);
+	}
+
+	@Test
+	@DisplayName("Ignore Values More Than 1000")
+	void ignoreValueMoreThan1000(){
+		// Given
+		String str = "1,2000,1111,7";
+		// When
+		int isValid = stringCalculator.Add(str);
+		// Then
+		assertThat(isValid).isEqualTo(8);
+	}
+
+	@Test
 	@DisplayName("Test Multiple Negative Values")
 	void testMultipleNegativeValues(){
 		// Given

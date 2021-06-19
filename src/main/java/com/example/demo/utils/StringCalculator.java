@@ -23,9 +23,13 @@ public class StringCalculator {
 
             // Handle only one number
             if (splittedNumbers.length == 1) {
-                if (Integer.parseInt(splittedNumbers[0]) < 0) {
+
+                if (Integer.parseInt(splittedNumbers[0]) < 0)
                     throw new IllegalArgumentException("Negative values not allowed "+numbers);
-                }
+
+                if(Integer.parseInt(splittedNumbers[0]) > 999)
+                    return 0;
+                
                 return Integer.parseInt(splittedNumbers[0]);
             }
 
@@ -33,6 +37,10 @@ public class StringCalculator {
             for (String s : splittedNumbers) {
                 if (Integer.parseInt(s) < 0)
                     throw new IllegalArgumentException("Negative values not allowed "+numbers);
+
+                if(Integer.parseInt(s)>999)
+                    continue;
+
                 add += Integer.parseInt(s);
             }
 
