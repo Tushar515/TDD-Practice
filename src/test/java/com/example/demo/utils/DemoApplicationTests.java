@@ -76,11 +76,11 @@ class DemoApplicationTests {
 	@DisplayName("SupportDifferentDelimiters")
 	void supportDifferentDelimiters(){
 		// Given
-		String test = "//;\n1;2";
+		String test = "//[*][%]\n1*2%3";
 		// When
 		int isValid = stringCalculator.Add(test);
 		// Then
-		assertThat(isValid).isEqualTo(3);
+		assertThat(isValid).isEqualTo(6);
 	}
 
 	@Test

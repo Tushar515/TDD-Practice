@@ -29,7 +29,7 @@ public class StringCalculator {
 
                 if(Integer.parseInt(splittedNumbers[0]) > 999)
                     return 0;
-                
+
                 return Integer.parseInt(splittedNumbers[0]);
             }
 
