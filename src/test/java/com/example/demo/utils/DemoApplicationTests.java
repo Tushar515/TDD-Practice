@@ -19,6 +19,17 @@ class DemoApplicationTests {
 	}
 
 	@Test
+	@DisplayName("RemoveDelimiters")
+	void removeDelimiters(){
+		// Given
+		String test = "1\n2,3";
+		// When
+		int isValid = stringCalculator.Add(test);
+		// Then
+		assertThat(isValid).isEqualTo(6);
+	}
+
+	@Test
 	@DisplayName("AddUnknownAmountOfNumbers")
 	void addUnknownAmountOfNumbers(){
 		// Given

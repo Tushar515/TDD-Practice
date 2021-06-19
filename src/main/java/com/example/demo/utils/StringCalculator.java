@@ -11,7 +11,8 @@ public class StringCalculator {
         // Handle an empty string
         if(numbers.isEmpty())
             return 0;
-        String[] splittedNumbers = numbers.split(",");
+        String[] splittedNumbers = numbers.replaceAll("\\n",",")
+                .split(",");
 
         // Handle only one number
         if(splittedNumbers.length == 1)
